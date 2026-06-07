@@ -1,0 +1,212 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-family: 'Playfair Display', serif; 
+    text-align: center;
+    color: #1a1a1a; 
+    background-color: #e3decb; 
+    overflow-x: hidden;
+}
+
+#background-layer {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100vw; 
+    height: 100vh;
+    
+    /* Fem servir el teu logo com a patró doble per fer l'efecte intercalat */
+    background-image: 
+        url('logo_sosaina.png'), 
+        url('logo_sosaina.png');
+        
+    /* Definim la mida del logo de fons (molt gran perquè quedi com a la imatge original) */
+    background-size: 800px; 
+    
+    /* Desplacem el segon fons a la meitat exacta per crear l'efecte de graella intercalada */
+    background-position: 
+        0 0, 
+        400px 400px; /* Aquest valor ha de ser la meitat del background-size */
+        
+    background-repeat: repeat;
+    
+    /* Baixem l'opacitat al mínim perquè sigui una marca d'aigua molt subtil */
+    opacity: 0.04; /* Pots pujar-ho a 0.06 o 0.08 si ho vols més marcat */
+    
+    z-index: -1;
+}
+
+#main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    max-width: 1600px; /* Ampliat dràsticament per permetre créixer */
+    padding: 20px;
+    margin-top: 3vh;
+    z-index: 1;
+}
+
+/* --- LOGO --- */
+#logo-sosaina {
+    width: clamp(200px, 20vw, 350px); /* Que creixi de forma natural amb la pantalla */
+    max-width: 80%;
+    margin-bottom: 30px; 
+}
+
+/* --- TEXTOS --- */
+h2 {
+    font-size: clamp(1.4rem, 3vw, 1.8rem); /* Reduït per donar protagonisme al títol */
+    font-weight: normal;
+    margin-bottom: -10px; 
+}
+
+h1 {
+    font-size: clamp(3.5rem, 8vw, 6.5rem); 
+    font-weight: normal; 
+    color: #a98b4f; 
+    letter-spacing: 2px;
+    margin-bottom: 0px; /* Més aire a sota */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+.subtitle {
+    margin-top: 0px;
+    margin-bottom: 0px; /* Força més espai buit abans del rellotge */
+}
+
+.footer-text {
+    margin-top: 0px; /* Més aire a dalt, allunyant-lo de les capses */
+    color: #8c713b; /* Daurat un pèl més fosc per llegir-se bé sobre el fons */
+    letter-spacing: 1px;
+}
+/* --- COMPTADOR --- */
+#timer {
+    display: flex;
+    justify-content: center;
+    gap: clamp(10px, 3vw, 25px); /* Ajustem una miqueta l'espai entre elles */
+    margin: 30px 0;
+}
+
+#timer .time-block {
+    background: rgba(255, 255, 255, 0.08); 
+    backdrop-filter: blur(8px); 
+    
+    /* Reduïm dràsticament el padding vertical (primer valor) per fer-les més baixetes i quadrades */
+    padding: clamp(10px, 1.5vw, 15px) clamp(10px, 2vw, 20px); 
+    
+    border-radius: 8px; 
+    min-width: clamp(70px, 8vw, 95px); /* Les fem una mica més estretes en general */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    border: 1px solid rgba(255, 255, 255, 0.15); 
+}
+
+#timer .time-block span {
+    font-weight: bold;
+    /* Reduïm bastant la mida dels números */
+    font-size: clamp(2rem, 4vw, 3.5rem); 
+    display: block;
+    line-height: 1; 
+}
+
+#timer .time-block p {
+    font-family: Arial, Helvetica, sans-serif; 
+    /* Reduïm també el text de "DIES", "HORES" perquè quedi proporcionat */
+    font-size: clamp(0.55rem, 1vw, 0.7rem); 
+    text-transform: uppercase;
+    color: #8c713b; 
+    margin-top: 8px; /* Juntem una mica més el text amb el número */
+    letter-spacing: 2px;
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   AJUSTOS RESPONSIVE (Mòbils i Tauletes)
+============================================================ */
+
+/* --- TAULETES (Fins a 1024px) --- */
+@media (max-width: 1024px) {
+    #main-content {
+        width: 100%;
+    }
+    h1 {
+        letter-spacing: 1px; /* Evita que el text es trenqui en dues línies */
+    }
+}
+
+/* --- MÒBILS (Fins a 768px) --- */
+@media (max-width: 768px) {
+    #main-content {
+        margin-top: 1vh; /* Ajustem l'alçada d'inici per a mòbils */
+        padding: 10px;
+    }
+    
+    #logo-sosaina {
+        margin-bottom: 20px; /* Menys espai sota el logo */
+    }
+
+    .subtitle {
+        margin-bottom: 40px; /* Reduïm dràsticament l'espai abans del rellotge en mòbil */
+    }
+
+    #timer {
+        margin: 20px 0;
+        gap: 8px; /* Reduïm l'espai entre capses */
+        /* Si la pantalla és extremadament estreta, permetem que les capses baixin de línia */
+        flex-wrap: wrap; 
+    }
+
+    #timer .time-block {
+        min-width: 65px;
+        padding: 10px;
+    }
+
+    .footer-text {
+        margin-top: 30px; /* Acostem el text inferior al rellotge */
+    }
+}
+
+
+
+
+
+
+/* =========================================================
+   CONTENIDOR DEL VÍDEO
+============================================================ */
+#video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent; 
+    /* El JavaScript canviarà el display a 'flex', i aquestes línies el centraran */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#myVideo {
+    width: 90vw; /* Que ocupi pràcticament tota l'amplada */
+    max-width: 1400px; /* Límit per a pantalles d'ordinador immenses */
+    aspect-ratio: 16 / 9; /* Manté la proporció panoràmica de YouTube */
+    max-height: 90vh; /* Evita que toqui les vores superior i inferior */
+    border: none; 
+    outline: none; 
+    box-shadow: 0 10px 50px rgba(0,0,0,0.8); /* Ombra fosca per donar profunditat */
+      }
