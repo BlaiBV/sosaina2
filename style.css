@@ -177,17 +177,19 @@ h1 {
    CONTENIDOR DEL VÍDEO I OVERLAY (Ajustat en columna)
 ============================================================ */
 #video-container {
-    position: fixed;
+    position: absolute; /* <-- CANVI CLAU: permet que la pàgina faci scroll */
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh; /* <-- CANVI CLAU: Mínim la pantalla, però pot créixer */
+    height: auto;      /* <-- CANVI CLAU: L'alçada s'adapta automàticament */
     background: transparent; 
-    /* Modificat per posar el logo sobre el vídeo en vertical */
     flex-direction: column; 
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    padding-top: 20px; /* Un petit marge perquè el logo no toqui el sostre en girar */
+    padding-bottom: 20px;
 }
 
 /* Nou bloc per al logo flotant */
