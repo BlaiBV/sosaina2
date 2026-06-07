@@ -1,5 +1,5 @@
 // La data final exacta: 7 de juny de 2026 a les 18:00:00
-const targetDate = new Date("June 7, 2026 16:50:00").getTime();
+const targetDate = new Date("June 7, 2026 17:06:00").getTime();
 
 const countdown = setInterval(() => {
     const now = new Date().getTime();
